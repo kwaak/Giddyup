@@ -1,4 +1,4 @@
-exports.create = function(guid) 
+exports.Create = function(guid) 
 {
   return new Visitor(guid);
 }

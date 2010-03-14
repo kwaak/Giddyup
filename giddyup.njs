@@ -5,15 +5,14 @@ function conn() {
   if ("WebSocket" in window) {
     ws = new WebSocket("ws://192.168.1.103:8080");
     ws.onopen = function() {
-      alert("We're connected!");
+      document.getElementById("response").value += "We're connected!";
     };
     ws.onmessage = function (evt) { 
       var received_msg = evt.data; 
-      alert("Received: " + received_msg); 
-      alert(stringToBytes(received_msg));
+      document.getElementById("response").value += "\n" + received_msg;
     };
     ws.onclose = function() { 
-      //alert("We're closed!");
+      document.getElementById("response").value += "We're closed!";
     };
   } 
   else 
@@ -44,7 +43,8 @@ function stringToBytes ( str ) {
   return re;
 }
 </script>
-<input type="button" value="Connect" onclick="conn();">
-<input type="button" value="Echo" onclick="echo();">
+<input type="button" value="Connect" onclick="conn();"><br>
+<input type="button" value="Echo" onclick="echo();"><br>
+<textarea cols="80" rows="30" id="response"></textarea>
 <hr>
 <a href="/Kill">Kill</a>

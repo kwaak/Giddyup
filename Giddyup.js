@@ -127,6 +127,11 @@ var tcpServer = tcp.createServer(function(socket) {
       
       this.handshaked = true;
       sys.debug('Handshake sent', 'info');
+      
+      var self = this;
+      var timeFunc = function() { self.write('\u0000Eeyoo!\uffff'); setTimeout(timeFunc, 1000); }
+      setTimeout(timeFunc, 1000);
+      
       return true;
     }
     else
@@ -149,7 +154,8 @@ var tcpServer = tcp.createServer(function(socket) {
           return false;
         }
 
-        self.write('\u0000' + chunk.substr(1, chunk.length) + '\uffff');
+        var chunkData = chunk.substr(1, chunk.length);
+        //self.write('\u0000' + chunk.substr(1, chunk.length) + '\uffff');
       });
         
       return true;

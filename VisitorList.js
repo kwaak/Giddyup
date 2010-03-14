@@ -32,7 +32,7 @@ exports.Add = function(res)
   cookies.Set(res, global.COOKIE_NAME, guid);
   
   // Place it in our list
-  var newVisitor = visitor.create(guid);
+  var newVisitor = visitor.Create(guid);
   visitors[guid] = newVisitor;
   
   return newVisitor;
